@@ -13,7 +13,15 @@ By the end of this tutorial, you should feel comfortable:
 
 You should also gain a better understanding of how physics forces affect objects.
 
-Clone the marbles project and open it up in Unity.  It should have some assets in a folder called "Downloads" and the project should already be set to 3D for you.
+>[action]Clone the marbles project and import it into a new 3D Unity project named Marble-Maze. Remember, you can clone to your Desktop using
+>
+```
+cd Desktop
+git clone https://MakeSchool-Tutorials@bitbucket.org/MakeSchool-Tutorials/marble-maze-unity.git
+```
+>
+
+It should have some assets in a folder called "Downloads."  Be sure your project is set up to be 3D.
 
 ![image alt text](../assets/image_0.png)
 

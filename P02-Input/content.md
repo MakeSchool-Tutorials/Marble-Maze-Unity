@@ -16,45 +16,39 @@ Be sure to save your code before you run the Scene!
 ![image alt text](../assets/image_18.gif)
 
 > [solution]
+>
 >Here’s how we wrote it:
 >
->```
->using UnityEngine;
-
->using System.Collections;
-
->public class Board : MonoBehaviour {
-
->public float torqueRate;
-
->private Rigidbody rb;
-
->// Use this for initialization
-
->void Start () {
-
->rb = GetComponent<Rigidbody>();
-
->}
-
->// Update is called once per frame
-
->void Update () {
-
->float dt = Time.deltaTime;
-
->float inputH = Input.GetAxis("Horizontal");
-
->float inputV = Input.GetAxis("Vertical");
-
->Vector3 direction = new Vector3(inputV,0,-inputH);
-
->rb.AddRelativeTorque(direction * torqueRate * dt);
-
->}
-
->}
->```
+```
+using UnityEngine;
+using System.Collections;
+>
+public class Board : MonoBehaviour {
+>
+  public float torqueRate;
+  private Rigidbody rb;
+>
+  // Use this for initialization
+  void Start () {
+    rb = GetComponent<Rigidbody>();
+  }
+>
+  // Update is called once per frame
+  void Update () {
+>
+    float dt = Time.deltaTime;
+>
+    float inputH = Input.GetAxis("Horizontal");
+    float inputV = Input.GetAxis("Vertical");
+>
+    Vector3 direction = new Vector3(inputV,0,-inputH);
+>
+    rb.AddRelativeTorque(direction * torqueRate * dt);
+>
+  }
+}
+```
+>
 
 We chose to make torqueRate public so that we could adjust it in the Editor to find a good value.  The value we set for now is 1000.
 
@@ -82,7 +76,9 @@ Now to make the Ball roll, give it a Rigidbody component.  Press Play and…
 
 Suddenly the board falls?  Why do you think this is?
 
-> [solution]It’s because the Rigidbody on our Board is interacting with the Rigidbody on our Ball.  Although our Board is correctly not affected by gravity, our Ball correctly *is*.  When gravity acts on the Ball, it falls down, and, when it falls onto the Board, it exerts force on the Board.
+> [solution]
+>
+>It’s because the Rigidbody on our Board is interacting with the Rigidbody on our Ball.  Although our Board is correctly not affected by gravity, our Ball correctly *is*.  When gravity acts on the Ball, it falls down, and, when it falls onto the Board, it exerts force on the Board.
 
 We really don’t want our Board to remain fixed in space.
 

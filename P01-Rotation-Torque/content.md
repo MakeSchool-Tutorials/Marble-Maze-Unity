@@ -27,11 +27,8 @@ The code you’ve added should look like this:
 private Rigidbody rb;
 
 // Use this for initialization
-
 void Start () {
-
-rb = GetComponent<Rigidbody>();
-
+  rb = GetComponent<Rigidbody>();
 }
 ```
 Now in the Update method, add the following lines:
@@ -40,7 +37,6 @@ Now in the Update method, add the following lines:
 float dt = Time.deltaTime;
 
 Vector3 direction = new Vector3(0,1,0);
-
 float torqueRate = 100;
 
 rb.AddRelativeTorque(direction * torqueRate * dt);
