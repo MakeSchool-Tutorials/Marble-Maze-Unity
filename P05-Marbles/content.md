@@ -6,7 +6,7 @@ The last two features we’d like to implement are a timer, so that players can 
 
 >[action] First, create an Empty Game Object in the Play Scene and name it Scene.  Create a new component on it and name it "ScenePlay."  This component will keep track of our timer and we’ll create UI to display the current time.
 
-![image alt text](../assets/image_56.png)
+![Play Scene controller](../assets/image_56.png)
 
 Open up the ScenePlay component in Visual Studios and add a private member variable to track the time:
 
@@ -35,15 +35,16 @@ Debug.Log(timeString);
 ```
 Run it and you should see times print out to the Console.
 
-![image alt text](../assets/image_57.png)
+![Time logs](../assets/image_57.png)
 
 >[action] Now display that time as Text on the Canvas.  As a hint, you can get a reference to any component Foo by writing "public Foo foo" and dragging an object with that component into the field in the Editor.  In order to use the Text component in a script, you’ll also need to add “using UnityEngine.UI” to the top of that file.
 
-![image alt text](../assets/image_58.gif)
+![Wibbly Wobbly Timey Wimey](../assets/image35.gif)
 
 To be thorough, be sure to watch the timer change from 00:59:999 to 01:00:00.  This takes a minute, but it’s better to wait a minute now and get it right than to have your timer break after a minute of play!
 
 >[solution]
+>
 We modified our ScenePlay component to look like this:
 >
 ```
@@ -58,7 +59,7 @@ public class ScenePlay : MonoBehaviour {
 >
   // Use this for initialization
   void Start () {
-
+>
   }
 >
   // Update is called once per frame
@@ -173,6 +174,6 @@ public class Goal : MonoBehaviour {
 
 Now when you run the Scene, the timer should stop when you win!
 
-![image alt text](../assets/image_59.gif)
+![The timer stops when you win](../assets/image32.gif)
 
 To make things a little prettier, by the way, we’ve added a stretched Image behind our Text as a child of UIOverlayWin with an alpha of 128 and given our "Congratulations" text a PulseText component with unscaled time checked and a period of 1.

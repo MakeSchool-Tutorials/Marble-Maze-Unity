@@ -7,13 +7,15 @@ slug: input-handling
 
 Since code often doesn’t work exactly as intended the first time, be sure you know how to access the console.  You can view the Console in Unity by selecting the Console tab next to the Project tab at the bottom.  You can also drag this tab to move where the Console is and make it visible at the same time as the Project Panel.
 
-![image alt text](../assets/image_17.gif)
+![Revealing the Console](../assets/image25.gif)
 
 You may find it useful to write to the Console using Debug.Log() statements.
 
 Be sure to save your code before you run the Scene!
 
-![image alt text](../assets/image_18.gif)
+![Check out that board rotation](../assets/image39.gif)
+
+<!-- again (and later too), this should use FixedUpdate for physics -->
 
 > [solution]
 >
@@ -49,30 +51,33 @@ public class Board : MonoBehaviour {
 }
 ```
 >
-
+>
 We chose to make torqueRate public so that we could adjust it in the Editor to find a good value.  The value we set for now is 1000.
-
+>
 We’ve also reversed the horizontal input, because we thought it felt more natural for the twist to go in that direction.
 
 You may have noticed that the Board doesn’t stop rotating very easily once it’s started, making it kind of difficult to control.  To fix this, we can increase the Board’s **"Angular Drag"**, which affects how quickly it slows down its rotation.
 
 > [action] Go ahead and set the Board’s Angular Drag to a value that feels good.  We found that the value of 1 worked pretty well.  Once you build the game, you may want to change both this and the torqueRate value, so keep that in mind.
 
-![image alt text](../assets/image_19.png)
+![Set Angular Drag](../assets/image_19.png)
 
 Now let’s add a ball to our game.
 
-Create a Sphere in your Scene, but not parented to the Board, and name it "Ball."
+>[action]
+>Create a Sphere in your Scene, but not parented to the Board, and name it "Ball."
 
-![image alt text](../assets/image_20.png)
+![Ball added](../assets/image_20.png)
 
-To make the Ball a little prettier, create a new Material called Ball in the Materials folder, set its Metallic value to 1, Smoothness value to 0.8, Albedo color to 808080FF, and make the Ball object use this Material.
+>[action]
+>To make the Ball a little prettier, create a new Material called Ball in the Materials folder, set its Metallic value to 1, Smoothness value to 0.8, Albedo color to 808080FF, and make the Ball object use this Material. This will make it appear to reflect the Skybox, but not the board. This is realistic enough for what we want to make.
 
-![image alt text](../assets/image_21.png)
+![A smooth ball](../assets/image_21.png)
 
-Now to make the Ball roll, give it a Rigidbody component.  Press Play and…
+>[action]
+>Now to make the Ball roll, give it a Rigidbody component.  Press Play and…
 
-![image alt text](../assets/image_22.gif)
+![Rolly ball](../assets/image57.gif)
 
 Suddenly the board falls?  Why do you think this is?
 
@@ -80,17 +85,17 @@ Suddenly the board falls?  Why do you think this is?
 >
 >It’s because the Rigidbody on our Board is interacting with the Rigidbody on our Ball.  Although our Board is correctly not affected by gravity, our Ball correctly *is*.  When gravity acts on the Ball, it falls down, and, when it falls onto the Board, it exerts force on the Board.
 
-We really don’t want our Board to remain fixed in space.
+We really want our Board to remain fixed in space, no matter what forces act on it.
 
 Thankfully, Rigidbodies are built with ability to fix them in rotation and/or translation.
 
 >[action] Select Board, expand the "Constraints" section of the Rigidbody component by clicking the little arrow, and check all of the position constraints.  Also check the y rotation constraint, just in case, because we never want the Board to rotate in the y direction, and forces might try and make it do that.
 
-![image alt text](../assets/image_23.png)
+![Constrained board](../assets/image_23.png)
 
 Now run the Scene.  Better?
 
-![image alt text](../assets/image_24.gif)
+![Better?](../assets/image37.gif)
 
 Definitely, but there’s still a problem.  It’s now *really really really* difficult to rotate the Board back when the Ball rolls onto one side.
 
@@ -111,6 +116,8 @@ If we want to reduce the amount of force that the Ball is exerting on the Board,
 
 >[action] Select Ball and set its Rigidbody’s mass to 0.1.
 
-![image alt text](../assets/image_25.gif)
+![image alt text](../assets/image18.gif)
 
 The Ball will still affect the Board, and you’ll feel it pushing down, which is realistic, but now the Board will be much easier to move, even when the Ball is on the outer edge.  It also makes a lot more sense to have a marble that is 10x less massive than the board than a marble and a board that are the same masses.
+
+When physics isn't acting realistically in your game, you can often solve the problem by forgetting the math and taking a moment to think: "What am I doing that's different than how stuff is in the real world?"

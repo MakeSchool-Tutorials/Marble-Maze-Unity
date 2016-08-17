@@ -9,7 +9,7 @@ To do this, it’s helpful to know that calling "Time.timeScale = 0" is a handy 
 
 >[action]Think you’re up for it?  Try implementing a pause overlay.
 
-![image alt text](../assets/image_60.gif)
+![Pause Overlay](../assets/image16.gif)
 
 >[solution]
 >
@@ -93,6 +93,8 @@ Congratulations!  You now have a ball-in-maze puzzle!  All that’s left is to b
 
 >[action]
 >Take a moment to at least build the maze and play around with your creation, and, if you would like, feel free to make the maze truly unique!
+
+![Complete game](../assets/complete.gif)
 
 (We’ve added some glass on top to prevent cheaters from flipping the ball over the walls, and added some UI to indicate controls to the players)
 
