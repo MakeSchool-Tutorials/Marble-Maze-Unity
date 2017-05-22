@@ -4,11 +4,11 @@ slug: timer-time
 ---
 The last two features we’d like to implement are a timer, so that players can challenge themselves to improve their time, and a pause overlay, from which players can continue or exit.
 
->[action] First, create an Empty Game Object in the Play Scene and name it Scene.  Create a new component on it and name it "ScenePlay."  This component will keep track of our timer and we’ll create UI to display the current time.
+> [action] First, create an Empty Game Object in the Play Scene and name it Scene. Create a new component on it and name it "ScenePlay."  This component will keep track of our timer and we’ll create UI to display the current time.
 
 ![Play Scene controller](../assets/image_56.png)
 
-Open up the ScenePlay component in Visual Studios and add a private member variable to track the time:
+Open up the ScenePlay component in Visual Studio and add a private member variable to track the time:
 
 ```
 private float timer;
@@ -19,10 +19,10 @@ Then add the following code to the Update() function to increment the timer each
 timer += Time.deltaTime;
 ```
 
->[info]
->Time.deltaTime is the amount of time that passed this frame.  If we have a framerate of 60 frames per second, Time.deltaTime *should* be around 1/60th of a second, but it’s difficult (possibly impossible) to predict exactly how long a frame will take to process, so instead the computer tells us how long the frame actually took. We add this to our timer so that we can track how much time has passed overall.
+> [info]
+>Time.deltaTime is the amount of time that passed this frame. If we have a framerate of 60 frames per second, Time.deltaTime *should* be around 1/60th of a second, but it’s difficult (possibly impossible) to predict exactly how long a frame will take to process, so instead the computer tells us how long the frame actually took. We add this to our timer so that we can track how much time has passed overall.
 
-To display the timer, we’ll want to populate the Text field of some UI with a string representing the time.  We have some code that will give you a string of the time, represented like "min:sec:millisec" and you can see that by adding the following code to your Update method:
+To display the timer, we’ll want to populate the Text field of some UI with a string representing the time. We have some code that will give you a string of the time, represented like "min:sec:millisec" and you can see that by adding the following code to your Update method:
 
 ```
 int ms = (int)(((float)(timer - (int)timer)) * 1000);
@@ -37,13 +37,13 @@ Run it and you should see times print out to the Console.
 
 ![Time logs](../assets/image_57.png)
 
->[action] Now display that time as Text on the Canvas.  As a hint, you can get a reference to any component Foo by writing "public Foo foo" and dragging an object with that component into the field in the Editor.  In order to use the Text component in a script, you’ll also need to add “using UnityEngine.UI” to the top of that file.
+> [action] Now display that time as Text on the Canvas. As a hint, you can get a reference to any component Foo by writing "public Foo foo" and dragging an object with that component into the field in the Editor. In order to use the Text component in a script, you’ll also need to add `using UnityEngine.UI` to the top of that file.
 
 ![Wibbly Wobbly Timey Wimey](../assets/image35.gif)
 
-To be thorough, be sure to watch the timer change from 00:59:999 to 01:00:00.  This takes a minute, but it’s better to wait a minute now and get it right than to have your timer break after a minute of play!
+To be thorough, be sure to watch the timer change from 00:59:999 to 01:00:00. This takes a minute, but it’s better to wait a minute now and get it right than to have your timer break after a minute of play!
 
->[solution]
+> [solution]
 >
 We modified our ScenePlay component to look like this:
 >
@@ -85,19 +85,19 @@ public class ScenePlay : MonoBehaviour {
 >
 >In order to make the text not move around whenever numbers changed, we also used the fixed-width font, absender1.
 
-There’s a problem though.  Our timer doesn’t stop when our game stops.  Right now, the logic to stop our timer is in our Goal, but our timer is running on our Scene Game Object.
+There’s a problem though. Our timer doesn’t stop when our game stops. Right now, the logic to stop our timer is in our Goal, but our timer is running on our Scene Game Object.
 
 To fix this, instead of making our Goal launch the win UI, let’s make ScenePlay launch the win UI if it detects that the Goal has been reached by the player.
 
->[action]
+> [action]
 >
->To do this, create a reference to Goal from ScenePlay using a member variable and implement a HasBeenReached method on Goal that will return a bool if it’s been reached by the Ball.  Then, in ScenePlay, check to see if the Goal has been reached.  If it has, launch the UI.
+>To do this, create a reference to Goal from ScenePlay using a member variable and implement a HasBeenReached method on Goal that will return a bool if it’s been reached by the Ball. Then, in ScenePlay, check to see if the Goal has been reached. If it has, launch the UI.
 
 Hint: you may find it helps to make the UI referenced from ScenePlay rather than Goal.
 
->[solution]
+> [solution]
 >
->We’ve modified both ScenePlay and Goal.  Our new implementation of ScenePlay looks like this:
+>We’ve modified both ScenePlay and Goal. Our new implementation of ScenePlay looks like this:
 >
 ```
 using UnityEngine;
@@ -170,7 +170,7 @@ public class Goal : MonoBehaviour {
   }
 }
 ```
->The funny notation "get" under the member variable hasBeenReached marks a getter for this property in C#.  “set” can be used in a similar way, where the variable “value” is used as the passed-in value.  We have a “get” but no “set” because we want this property to be read-only for other classes.  That way, some other class can’t accidentally set the Goal’s hasBeenReached property.
+>The funny notation "get" under the member variable hasBeenReached marks a getter for this property in C#. `set` can be used in a similar way, where the variable `value` is used as the passed-in value. We have a `get` but no `set` because we want this property to be read-only for other classes. That way, some other class can’t accidentally set the Goal’s hasBeenReached property.
 
 Now when you run the Scene, the timer should stop when you win!
 
