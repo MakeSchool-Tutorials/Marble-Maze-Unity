@@ -22,7 +22,7 @@ Clone the marbles project and import it into a new 3D Unity project named Marble
 >
 ```
 cd Desktop
-git clone https://MakeSchool-Tutorials@bitbucket.org/MakeSchool-Tutorials/marble-maze-unity.git
+git clone https://github.com/MakeSchool-Tutorials/Marble-Maze-Unity-Starter.git
 ```
 >
 It should have some assets in a folder called "Downloads."
