@@ -11,7 +11,7 @@ Create an `Empty Game Object` as a child of `Board` and name it `Goal`.
 >
 ![Goal](../assets/image_26.png)
 >
-Give `Goal` a `Sphere Collider` set to `Trigger`. Add a `Sphere` as a child. Remove the child Sphere’s `Sphere collider`, set its `y` scale to `0`, and set its `y `position to `-0.49`. This should make the Goal look like little circle on the Board.
+Give `Goal` a `Sphere Collider` set to `Trigger`. Add a `Sphere` as a child. Remove the child Sphere’s `Sphere collider`, set its `y` scale to `0.001`, and set its `y `position to `-0.49`. This should make the Goal look like little circle on the Board.
 >
 To see it better, `position` the `Goal` somewhere other than the Ball’s start position.
 >
